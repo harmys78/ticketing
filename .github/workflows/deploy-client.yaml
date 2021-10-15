@@ -16,10 +16,10 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - run: cd client && docker build -t cygnetops/ticketing-client .
-      - run: docker push cygnetops/ticketing-client
+      - run: cd client && docker build -t harmys78/coachbuddy:client15Oct .
+      - run: docker push harmys78/coachbuddy:client15Oct
       - uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-      - run: doctl kubernetes cluster kubeconfig save ticketing
+      - run: doctl kubernetes cluster kubeconfig save coachbuddy
       - run: kubectl rollout restart deployment client-depl
