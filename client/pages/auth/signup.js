@@ -4,7 +4,7 @@ import useRequest from '../../hooks/use-request';
 import BaseLayout from "../../components/BaseLayout";
 import buildClient from "../../api/build-client";
 
-export default () => {
+export default ({ currentUser }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { doRequest, errors } = useRequest({

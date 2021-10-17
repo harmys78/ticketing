@@ -1,0 +1,32 @@
+doctl kubernetes cluster kubeconfig save coachbuddy
+
+kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdgsavdghsav212dsd
+kubectl create secret generic stripe-secret --from-literal=STRIPE_KEY=asdgsavdghsav212dsd
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.3/deploy/static/provider/do/deploy.yaml
+kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
+kubectl apply -f ingress-srv.yaml
+kubectl apply -f nats-depl.yaml
+kubectl apply -f auth-mongo-depl.yaml
+kubectl apply -f auth-depl.yaml
+kubectl apply -f tickets-mongo-depl.yaml
+kubectl apply -f tickets-depl.yaml
+kubectl apply -f orders-mongo-depl.yaml
+kubectl apply -f orders-depl.yaml
+kubectl apply -f client-depl.yaml
+
+kubectl rollout restart deployment ingress-srv.yaml
+
+kubectl get nodes
+ubectl get deployments
+kubectl get pods
+
+kubectl logs auth-depl-ffc744f5d-r49jt
+
+
+
+Golden version
+Clean versions Auth2, CLient2
+144.126.254.178
+
+
