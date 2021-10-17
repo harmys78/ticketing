@@ -18,3 +18,5 @@ const buildClient = ({ req }) => {
     });
   }
 };
+
+export default buildClient
