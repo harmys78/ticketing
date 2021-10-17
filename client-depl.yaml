@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: harmys78/coachbuddy:client17Oct6
+          image: harmys78/coachbuddy:client17Oct7
 ---
 apiVersion: v1
 kind: Service

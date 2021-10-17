@@ -3,7 +3,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import Router from 'next/router';
 import buildClient from "../../api/build-client";
 import useRequest from '../../hooks/use-request';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 
 const OrderShow = ({ order, currentUser }) => {
   const [timeLeft, setTimeLeft] = useState(0);
