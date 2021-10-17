@@ -25,7 +25,7 @@ export const getServerSideProps = async (context) => {
   let orders;
   try {
     const ordersResponse = await client.get(`/api/orders`);
-    orders = ordersResponse;
+    orders = ordersResponse.data;
   } catch (e) {
     console.log("error in get orders", e);
   }
