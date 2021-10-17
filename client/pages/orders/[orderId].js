@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import Router from 'next/router';
+import buildClient from "../../api/build-client";
 import useRequest from '../../hooks/use-request';
 
 const OrderShow = ({ order, currentUser }) => {
@@ -46,11 +47,34 @@ const OrderShow = ({ order, currentUser }) => {
   );
 };
 
-OrderShow.getInitialProps = async (context, client) => {
+/*OrderShow.getInitialProps = async (context, client) => {
   const { orderId } = context.query;
   const { data } = await client.get(`/api/orders/${orderId}`);
 
   return { order: data };
+};*/
+export const getServerSideProps = async (context) => {
+  const { orderId } = context.query;
+  const client = buildClient(context);
+
+  let currentUser, order;
+  try {
+    const currentUserRes = await client.get("/api/users/currentuser");
+    currentUser = currentUserRes.data;
+    const orderRes = await client.get(`/api/orders/${orderId}`);
+    order = orderRes.data;
+    console.log("order in order detail page", order);
+  } catch (e) {
+    console.log("error in client index server", e);
+  }
+  // because undefined cannot be serialized
+  if (!currentUser) {
+    currentUser = null;
+  }
+  if (!order) {
+    order = null;
+  }
+  return { props: { currentUser, order } };
 };
 
 export default OrderShow;

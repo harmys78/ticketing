@@ -42,7 +42,7 @@ const LandingPage = ({ currentUser, tickets }) => {
 /*
 LandingPage.getInitialProps = async (context, client, currentUser) => {
   const { data } = await client.get('/api/tickets');
-  /*const data = [{
+  const data = [{
     "title": "abc",
     "price": 10,
     },
@@ -53,7 +53,7 @@ LandingPage.getInitialProps = async (context, client, currentUser) => {
     {
     "title": "ghi",
     "price": 30,
-    }];*/
+    }];
 
   return { tickets: data };
 };

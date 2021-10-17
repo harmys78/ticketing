@@ -1,3 +1,5 @@
+import React from "react";
+import buildClient from "../../api/build-client";
 import Router from 'next/router';
 import useRequest from '../../hooks/use-request';
 
@@ -24,11 +26,23 @@ const TicketShow = ({ ticket }) => {
   );
 };
 
-TicketShow.getInitialProps = async (context, client) => {
+/*TicketShow.getInitialProps = async (context, client) => {
   const { ticketId } = context.query;
   const { data } = await client.get(`/api/tickets/${ticketId}`);
 
   return { ticket: data };
-};
+};*/
 
+export const getServerSideProps = async (context) => {
+  const { ticketId } = context.query;
+  const client = buildClient(context);
+  let ticket;
+  try {
+    const ticketResponse = await client.get(`/api/tickets/${ticketId}`);
+    ticket = ticketResponse.data;
+  } catch (e) {
+    console.log("error in ticket detail page", e);
+  }
+  return { props: { ticket } };
+};
 export default TicketShow;
