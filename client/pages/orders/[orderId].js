@@ -10,14 +10,14 @@ const OrderShow = ({ order, currentUser }) => {
     url: '/api/payments',
     method: 'post',
     body: {
-      orderId: order.id,
+      orderId: order && order.id,
     },
-    onSuccess: () => Router.push('/orders'),
+    onSuccess: (payment) => Router.push('/orders'),
   });
 
   useEffect(() => {
     const findTimeLeft = () => {
-      const msLeft = new Date(order.expiresAt) - new Date();
+      const msLeft = new Date(order && order.expiresAt) - new Date();
       setTimeLeft(Math.round(msLeft / 1000));
     };
 
@@ -39,8 +39,8 @@ const OrderShow = ({ order, currentUser }) => {
       <StripeCheckout
         token={({ id }) => doRequest({ token: id })}
         stripeKey="pk_test_JMdyKVvf8EGTB0Fl28GsN7YY"
-        amount={order.ticket.price * 100}
-        email={currentUser.email}
+        amount={order && order.ticket.price * 100}
+        email={currentUser && currentUser.email}
       />
       {errors}
     </div>

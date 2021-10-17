@@ -6,7 +6,7 @@ import BaseLayout from "../components/BaseLayout";
 
 const LandingPage = ({ currentUser, tickets }) => {
   console.log("tickets", tickets);
-  const ticketList = tickets.map((ticket) => {
+  const ticketList = tickets && tickets.map((ticket) => {
     return (
       <tr key={ticket.id}>
         <td>{ticket.title}</td>
