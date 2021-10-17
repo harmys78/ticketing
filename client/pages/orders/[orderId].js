@@ -3,6 +3,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import Router from 'next/router';
 import buildClient from "../../api/build-client";
 import useRequest from '../../hooks/use-request';
+import PropTypes from 'prop-types';
 
 const OrderShow = ({ order, currentUser }) => {
   const [timeLeft, setTimeLeft] = useState(0);
@@ -39,8 +40,8 @@ const OrderShow = ({ order, currentUser }) => {
       <StripeCheckout
         token={({ id }) => doRequest({ token: id })}
         stripeKey="pk_test_JMdyKVvf8EGTB0Fl28GsN7YY"
-        amount={order && order.ticket.price * 100}
-        email={currentUser && currentUser.email}
+        amount={order.ticket.price * 100}
+        email={currentUser.email}
       />
       {errors}
     </div>
