@@ -1,3 +1,5 @@
+import buildClient from "../../api/build-client";
+
 const OrderIndex = ({ orders }) => {
   return (
     <ul>
@@ -12,10 +14,24 @@ const OrderIndex = ({ orders }) => {
   );
 };
 
-OrderIndex.getInitialProps = async (context, client) => {
+/*OrderIndex.getInitialProps = async (context, client) => {
   const { data } = await client.get('/api/orders');
 
   return { orders: data };
-};
+};*/
 
+export const getServerSideProps = async (context) => {
+  const client = buildClient(context);
+  let orders;
+  try {
+    const ordersResponse = await client.get(`/api/orders`);
+    orders = ordersResponse;
+  } catch (e) {
+    console.log("error in get orders", e);
+  }
+  if (!orders) {
+    orders = null;
+  }
+  return { props: { orders } };
+};
 export default OrderIndex;
