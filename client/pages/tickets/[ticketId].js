@@ -4,7 +4,6 @@ import Router from 'next/router';
 import useRequest from '../../hooks/use-request';
 
 const TicketShow = ({ ticket }) => {
-  /* On purchase-button click, post order-request and redirect to /orders/${order.id} page */ 
   const { doRequest, errors } = useRequest({
     url: '/api/orders',
     method: 'post',
@@ -17,7 +16,6 @@ const TicketShow = ({ ticket }) => {
 
   return (
     <div>
-      /* Display Ticket title and price. On purchase-button click, post order-request and redirect to /orders/${order.id} page */ 
       <h1>{ticket && ticket.title}</h1>
       {ticket && <h4> Price:{ticket.price} </h4>}
       {errors}
