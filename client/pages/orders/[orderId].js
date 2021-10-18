@@ -38,12 +38,12 @@ const OrderShow = ({ order, currentUser }) => {
     <div>
       Time left to pay: {timeLeft} seconds
       /* Stripe checkout API will diplay form to collect credit card number. On submit button press, collect token, post payment request and redirect to /Orders page */
-      <StripeCheckout
+      /*<StripeCheckout
         token={({ id }) => doRequest({ token: id })}
         stripeKey="pk_test_JMdyKVvf8EGTB0Fl28GsN7YY"
         amount={order.ticket.price * 100}
         email={currentUser.email}
-      />
+      />*/
       {errors}
     </div>
   );
