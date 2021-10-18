@@ -4,7 +4,7 @@ import useRequest from '../../hooks/use-request';
 import BaseLayout from "../../components/BaseLayout";
 import buildClient from "../../api/build-client";
 
-export default ({ currentUser }) => {
+const signUp = ({ currentUser }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { doRequest, errors } = useRequest({
@@ -51,6 +51,7 @@ export default ({ currentUser }) => {
   );
 };
 
+export default signUp;
 export const getServerSideProps = async (context) => {
   const client = buildClient(context);
   let currentUser;
