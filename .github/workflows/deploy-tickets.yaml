@@ -12,7 +12,7 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       - run: cd tickets && docker build -t harmys78/coachbuddy:tickets17Oct11 .
-      - run: docker push harmys78/coachbuddy:tickets17Oct11 .
+      - run: docker push harmys78/coachbuddy:tickets17Oct11
       - uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
